@@ -36,7 +36,7 @@ HEADERS = Headers/
 all : main
 
 main : $(CLASSES)
-	g++ $(LDFLAGS) $(CLASSES) -o SpaceShooter $(RDFLAGS) $(FLAG)
+	g++ $(LDFLAGS) $(CLASSES) -o SpaceTraveller $(RDFLAGS) $(FLAG)
 
 main.o : $(SOURCES)main.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)main.cpp $(RDFLAGS)
