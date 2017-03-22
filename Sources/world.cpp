@@ -14,9 +14,11 @@ World::World(sf::RenderTarget& outputTarget, FontHolder& fonts)
 , mFonts(fonts)
 , mSceneGraph()
 , mSceneLayers()
-, mWorldBounds(0.f, 0.f, mWorldView.getSize().x, 5000.f)
+, mWorldBounds(0.f, 0.f, mWorldView.getSize().x, mWorldView.getSize().y)
 {
 	mSceneTexture.create(mTarget.getSize().x, mTarget.getSize().y);
+
+	zoomView(3);
 
 	loadTextures();
 	buildScene();
@@ -25,11 +27,20 @@ World::World(sf::RenderTarget& outputTarget, FontHolder& fonts)
 void World::loadTextures()
 {
 	mTextures.load(Textures::Space, "Media/Textures/Space.png");
+	mTextures.load(Textures::Planets, "Media/Textures/Planets.png");
 }
 
 void World::update(sf::Time dt)
 {
 
+}
+
+void World::zoomView(float factor){
+	mWorldView.zoom(factor);
+	mWorldBounds.left  = mWorldView.getCenter().x - mWorldView.getSize().x/2;
+	mWorldBounds.top = mWorldView.getCenter().y - mWorldView.getSize().y/2;
+	mWorldBounds.width = mWorldView.getSize().x;
+	mWorldBounds.height = mWorldView.getSize().y;
 }
 
 void World::draw()
@@ -68,6 +79,21 @@ void World::buildScene()
 	std::unique_ptr<SpriteNode> spaceSprite(new SpriteNode(spaceBackground, textureRect));
 	spaceSprite->setPosition(mWorldBounds.left, mWorldBounds.top - viewHeight);
 	mSceneLayers[Background]->attachChild(std::move(spaceSprite));
+
+	addPlanets();
+}
+
+void World::addPlanets(){
+
+	addPlanet(Planet::Blue, 100, 100);
+	addPlanet(Planet::Green, 100, 600);
+	addPlanet(Planet::Red, 600, 100);
+	addPlanet(Planet::Brown, 600, 600);
+}
+
+void World::addPlanet(Planet::Type id, int x, int y){
+	std::unique_ptr<Planet> planet(new Planet(id, mTextures, x, y));
+	mSceneLayers[LowerAir]->attachChild(std::move(planet));
 }
 
 sf::FloatRect World::getViewBounds() const

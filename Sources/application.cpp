@@ -10,7 +10,7 @@
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 
 Application::Application()
-: mWindow(sf::VideoMode(1024, 768), "Network", sf::Style::Close)
+: mWindow(sf::VideoMode(1024, 768), "SpaceTraveller", sf::Style::Close)
 , mTextures()
 , mFonts()
 , mStateStack(State::Context(mWindow, mTextures, mFonts))

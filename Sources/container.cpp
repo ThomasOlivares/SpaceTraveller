@@ -1,8 +1,11 @@
 #include "../Headers/container.hpp"
 
+#include <iostream>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+
+using namespace std;
 
 namespace GUI
 {
@@ -51,6 +54,15 @@ void Container::handleEvent(const sf::Event& event)
 			}
 		}
 	}
+	else if (event.type == sf::Event::MouseButtonPressed){
+		if (hasSelection()){
+			mChildren[mSelectedChild]->activate();
+		}
+	}
+	else if (event.type == sf::Event::MouseMoved)
+	{
+		selectAt(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+	}
 }
 
 void Container::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -77,6 +89,34 @@ void Container::select(std::size_t index)
 
 		mChildren[index]->select();
 		mSelectedChild = index;
+	}
+}
+
+void Container::selectAt(sf::Vector2f mousePosition){
+
+	if (mSelectedChild >= 0){
+		mChildren[mSelectedChild]->deselect();
+		mSelectedChild = -1;
+	}
+	
+	for (int index = 0; index < mChildren.size(); index++)
+	{
+		Component::Ptr component = mChildren[index];
+
+		if (component->hasSize()){
+
+			sf::Vector2i size = component->getSize();
+
+			// Checking if the mouse is on the component
+			if (mousePosition.x >= component->getPosition().x &&
+				mousePosition.y >= component->getPosition().y &&
+				mousePosition.x <= component->getPosition().x + size.x &&
+				mousePosition.y <= component->getPosition().y + size.y)
+			{
+				mSelectedChild = index;
+				select(index);
+			}
+		}
 	}
 }
 

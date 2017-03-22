@@ -2,6 +2,7 @@
 #define BOOK_CONTAINER_HPP
 
 #include "../Headers/component.hpp"
+#include <SFML/Graphics.hpp>
 
 #include <vector>
 #include <memory>
@@ -29,6 +30,7 @@ class Container : public Component
         virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
         bool				hasSelection() const;
+        void                selectAt(sf::Vector2f mousePosition);
         void				select(std::size_t index);
         void				selectNext();
         void				selectPrevious();

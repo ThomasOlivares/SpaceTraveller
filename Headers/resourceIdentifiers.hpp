@@ -15,6 +15,7 @@ namespace Textures
 	enum ID
 	{
 		Buttons,
+		Planets, 
 		Space,
 		TitleScreen
 	};

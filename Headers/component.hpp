@@ -4,6 +4,7 @@
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transformable.hpp>
+#include <SFML/System/Vector2.hpp>
 
 #include <memory>
 
@@ -24,6 +25,7 @@ class Component : public sf::Drawable, public sf::Transformable, private sf::Non
 
 	public:
 							Component();
+                            Component(int x, int y);
         virtual				~Component();
 
         virtual bool		isSelectable() const = 0;
@@ -34,6 +36,9 @@ class Component : public sf::Drawable, public sf::Transformable, private sf::Non
         virtual bool		isActive() const;
         virtual void		activate();
         virtual void		deactivate();
+        virtual sf::Vector2i getSize();
+        virtual void        setSize(int x, int y);
+        virtual bool        hasSize();
 
         virtual void		handleEvent(const sf::Event& event) = 0;
 
@@ -41,6 +46,7 @@ class Component : public sf::Drawable, public sf::Transformable, private sf::Non
     private:
         bool				mIsSelected;
         bool				mIsActive;
+        sf::Vector2i        size;
 };
 
 }

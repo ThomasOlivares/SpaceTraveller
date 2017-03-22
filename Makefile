@@ -11,9 +11,12 @@ CLASSES=application.o \
 		commandQueue.o \
 		component.o \
 		container.o \
+		dataTables.o \
+		entity.o \
 		gameState.o \
 		main.o \
 		menuState.o \
+		planet.o \
 		$(HEADERS)resourceHolder.hpp \
 		sceneNode.o \
 		spriteNode.o \
@@ -59,11 +62,20 @@ component.o : $(SOURCES)component.cpp
 container.o : $(SOURCES)container.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)container.cpp $(RDFLAGS)
 
+dataTables.o : $(SOURCES)dataTables.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)dataTables.cpp $(RDFLAGS)
+
+entity.o : $(SOURCES)entity.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)entity.cpp $(RDFLAGS)
+
 gameState.o : $(SOURCES)gameState.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)gameState.cpp $(RDFLAGS)
 
 menuState.o : $(SOURCES)menuState.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)menuState.cpp $(RDFLAGS)
+
+planet.o : $(SOURCES)planet.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)planet.cpp $(RDFLAGS)
 
 sceneNode.o : $(SOURCES)sceneNode.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)sceneNode.cpp $(RDFLAGS)
@@ -88,7 +100,7 @@ world.o : $(SOURCES)world.cpp
 
 clean :
 	rm *.o
-	rm SpaceShooter
+	rm SpaceTraveller
 
 oclean :
 	rm *.o

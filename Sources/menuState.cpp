@@ -5,7 +5,9 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
+#include <iostream>
 
+using namespace std;
 
 MenuState::MenuState(StateStack& stack, Context context)
 : State(stack, context)
@@ -16,6 +18,7 @@ MenuState::MenuState(StateStack& stack, Context context)
 
 	auto playButton = std::make_shared<GUI::Button>(context);
 	playButton->setPosition(100, 300);
+	playButton->setSize(200, 50);
 	playButton->setText("Play");
 	playButton->setCallback([this] ()
 	{
@@ -25,6 +28,7 @@ MenuState::MenuState(StateStack& stack, Context context)
 
 	auto exitButton = std::make_shared<GUI::Button>(context);
 	exitButton->setPosition(100, 500);
+	exitButton->setSize(200, 50);
 	exitButton->setText("Exit");
 	exitButton->setCallback([this] ()
 	{

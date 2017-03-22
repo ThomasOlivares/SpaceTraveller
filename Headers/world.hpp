@@ -7,6 +7,7 @@
 #include "../Headers/spriteNode.hpp"
 #include "../Headers/commandQueue.hpp"
 #include "../Headers/command.hpp"
+#include "../Headers/planet.hpp"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -31,6 +32,9 @@ class World : private sf::NonCopyable
 	private:
 		void								loadTextures();
 		void								buildScene();
+		void 								addPlanet(Planet::Type id, int x, int y);
+		void 								addPlanets();
+		void 								zoomView(float factor);
 
 
 	private:
