@@ -32,6 +32,8 @@ class SceneNode : public sf::Transformable, public sf::Drawable, private sf::Non
 		Ptr						detachChild(const SceneNode& node);
 		
 		void					update(sf::Time dt, CommandQueue& commands);
+		bool 					setVisible(bool visible_);
+		bool 					setReverse(bool reverse_);
 
 		sf::Vector2f			getWorldPosition() const;
 		sf::Transform			getWorldTransform() const;
@@ -57,10 +59,12 @@ class SceneNode : public sf::Transformable, public sf::Drawable, private sf::Non
 		void					drawBoundingRect(sf::RenderTarget& target, sf::RenderStates states) const;
 
 
-	private:
+	protected:
 		std::vector<Ptr>		mChildren;
 		SceneNode*				mParent;
 		Category::Type			mDefaultCategory;
+		bool 					visible;
+		bool 					reverse;
 };
 
 bool	collision(const SceneNode& lhs, const SceneNode& rhs);

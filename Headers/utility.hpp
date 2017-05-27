@@ -28,9 +28,11 @@ void			centerOrigin(sf::Sprite& sprite);
 void			centerOrigin(sf::Text& text);
 void			centerOrigin(Animation& animation);
 
-// Degree/radian conversion
+// Geometry
+float			distance(sf::Vector2f point1, sf::Vector2f point2);
 float			toDegree(float radian);
 float			toRadian(float degree);
+float 			min(float a, float b);
 
 // Random number generation
 int				randomInt(int exclusiveMax);
@@ -39,6 +41,8 @@ int				randomInt(int exclusiveMax);
 float			length(sf::Vector2f vector);
 sf::Vector2f	unitVector(sf::Vector2f vector);
 
+
+sf::Vector2f getWindowSize();
 
 #include "../Sources/utility.tpp"
 #endif // UTILITY_HPP

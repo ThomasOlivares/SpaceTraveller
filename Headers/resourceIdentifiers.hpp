@@ -1,6 +1,4 @@
-#ifndef RESOURCEIDENTIFIERS_HPP
-#define RESOURCEIDENTIFIERS_HPP
-
+#pragma once
 
 // Forward declaration of SFML classes
 namespace sf
@@ -15,9 +13,12 @@ namespace Textures
 	enum ID
 	{
 		Buttons,
-		Planets, 
+		Planets,
+		Ships,
 		Space,
-		TitleScreen
+		TitleScreen, 
+		Cursor, 
+		Symbol
 	};
 }
 
@@ -36,5 +37,3 @@ class ResourceHolder;
 
 typedef ResourceHolder<sf::Texture, Textures::ID>			TextureHolder;
 typedef ResourceHolder<sf::Font, Fonts::ID>					FontHolder;
-
-#endif // RESOURCEIDENTIFIERS_HPP

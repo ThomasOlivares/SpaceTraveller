@@ -21,7 +21,7 @@ void Container::pack(Component::Ptr component)
 	mChildren.push_back(component);
 
 	if (!hasSelection() && component->isSelectable()){
-		select(mChildren.size() - 1);
+		selectIndex(mChildren.size() - 1);
 	}
 }
 
@@ -65,6 +65,12 @@ void Container::handleEvent(const sf::Event& event)
 	}
 }
 
+void Container::click(){
+	if (hasSelection()){
+		mChildren[mSelectedChild]->activate();
+	}
+}
+
 void Container::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
@@ -79,7 +85,7 @@ bool Container::hasSelection() const
 	return mSelectedChild >= 0;
 }
 
-void Container::select(std::size_t index)
+void Container::selectIndex(std::size_t index)
 {
 	if (mChildren[index]->isSelectable())
 	{
@@ -114,7 +120,7 @@ void Container::selectAt(sf::Vector2f mousePosition){
 				mousePosition.y <= component->getPosition().y + size.y)
 			{
 				mSelectedChild = index;
-				select(index);
+				selectIndex(index);
 			}
 		}
 	}
@@ -134,7 +140,7 @@ void Container::selectNext()
 	while (!mChildren[next]->isSelectable());
 
 	// Select that component
-	select(next);
+	selectIndex(next);
 }
 
 void Container::selectPrevious()
@@ -151,7 +157,7 @@ void Container::selectPrevious()
 	while (!mChildren[prev]->isSelectable());
 
 	// Select that component
-	select(prev);
+	selectIndex(prev);
 }
 
 }

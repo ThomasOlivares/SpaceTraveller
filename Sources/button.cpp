@@ -1,11 +1,13 @@
 #include "../Headers/button.hpp"
 #include "../Headers/utility.hpp"
 #include "../Headers/resourceHolder.hpp"
+#include "../Headers/dataTables.hpp"
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <iostream>
 
 namespace GUI
 {
@@ -17,6 +19,21 @@ Button::Button(State::Context context)
 , mIsToggle(false)
 {
 	changeTexture(Normal);
+
+	sf::FloatRect bounds = mSprite.getLocalBounds();
+	mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
+}
+
+Button::Button(const TextureHolder& textures, const FontHolder& fonts)
+: mCallback()
+, mText("", fonts.get(Fonts::Main), 16)
+, mIsToggle(false)
+{
+	mSprite = sf::Sprite(textures.get(Textures::Buttons));
+
+	changeTexture(Normal);
+
+	setSize(mSprite.getTextureRect().width, mSprite.getTextureRect().height);
 
 	sf::FloatRect bounds = mSprite.getLocalBounds();
 	mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);

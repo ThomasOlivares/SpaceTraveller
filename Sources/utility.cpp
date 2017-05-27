@@ -145,6 +145,10 @@ void centerOrigin(sf::Text& text)
 	text.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
 }
 
+float distance(sf::Vector2f point1, sf::Vector2f point2){
+	return sqrt(pow(point1.x - point2.x, 2) + pow(point1.y - point2.y, 2) );
+}
+
 float toDegree(float radian)
 {
 	return 180.f / 3.141592653589793238462643383f * radian;
@@ -170,4 +174,17 @@ sf::Vector2f unitVector(sf::Vector2f vector)
 {
 	assert(vector != sf::Vector2f(0.f, 0.f));
 	return vector / length(vector);
+}
+
+float min(float a, float b){
+	if (a < b){
+		return a;
+	}
+	else{
+		return b;
+	}
+}
+
+sf::Vector2f getWindowSize(){
+	return sf::Vector2f(1024, 768);
 }

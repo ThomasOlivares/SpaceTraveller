@@ -25,15 +25,18 @@ class Container : public Component
         virtual bool		isSelectable() const;
         virtual void		handleEvent(const sf::Event& event);
 
+        void                selectAt(sf::Vector2f mousePosition);
+        void                click();
+
 
     private:
         virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
         bool				hasSelection() const;
-        void                selectAt(sf::Vector2f mousePosition);
-        void				select(std::size_t index);
+        void				selectIndex(std::size_t index);
         void				selectNext();
         void				selectPrevious();
+
 
 
     private:

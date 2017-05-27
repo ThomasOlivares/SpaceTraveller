@@ -3,6 +3,7 @@
 
 #include "../Headers/state.hpp"
 #include "../Headers/world.hpp"
+#include "../Headers/player.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -20,6 +21,7 @@ class GameState : public State
 
 	private:
 		World				mWorld;
+		Player				mPlayer;
 };
 
 #endif // GAMESTATE_HPP

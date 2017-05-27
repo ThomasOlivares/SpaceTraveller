@@ -54,7 +54,7 @@ class State
 		Context				getContext() const;
 
 
-	private:
+	protected:
 		StateStack*			mStack;
 		Context				mContext;
 };

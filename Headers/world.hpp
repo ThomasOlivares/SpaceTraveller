@@ -32,9 +32,9 @@ class World : private sf::NonCopyable
 	private:
 		void								loadTextures();
 		void								buildScene();
-		void 								addPlanet(Planet::Type id, int x, int y);
+		void 								addPlanet(Planet::Type id, 
+												int number, int x, int y);
 		void 								addPlanets();
-		void 								zoomView(float factor);
 
 
 	private:

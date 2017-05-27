@@ -4,6 +4,7 @@
 #include "../Headers/component.hpp"
 #include "../Headers/resourceIdentifiers.hpp"
 #include "../Headers/state.hpp"
+#include "../Headers/resourceHolder.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -32,6 +33,8 @@ class Button : public Component
 
 
     public:
+                                Button(const TextureHolder& textures, 
+                                    const FontHolder& fonts);
                                 Button(State::Context context);
 
         void                    setCallback(Callback callback);

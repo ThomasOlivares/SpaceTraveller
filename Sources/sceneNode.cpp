@@ -5,6 +5,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <iostream>
 #include <algorithm>
 #include <cassert>
 #include <cmath>
@@ -14,6 +15,8 @@ SceneNode::SceneNode(Category::Type category)
 : mChildren()
 , mParent(nullptr)
 , mDefaultCategory(category)
+, visible(true)
+, reverse(false)
 {
 }
 
@@ -59,11 +62,27 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	states.transform *= getTransform();
 
 	// Draw node and children with changed transform
-	drawCurrent(target, states);
-	drawChildren(target, states);
-
+	if (visible){
+		if (reverse){
+			drawChildren(target, states);
+			drawCurrent(target, states);
+		}
+		else{
+			drawCurrent(target, states);
+			drawChildren(target, states);
+		}
+	}
+	
 	// Draw bounding rectangle - disabled by default
 	//drawBoundingRect(target, states);
+}
+
+bool SceneNode::setVisible(bool visible_){
+	visible = visible_;
+}
+
+bool SceneNode::setReverse(bool reverse_){
+	reverse = reverse_;
 }
 
 void SceneNode::drawCurrent(sf::RenderTarget&, sf::RenderStates) const

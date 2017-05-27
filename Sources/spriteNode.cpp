@@ -16,3 +16,15 @@ void SpriteNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) 
 {
 	target.draw(mSprite, states);
 }
+
+unsigned int SpriteNode::getCategory() const
+{
+	return Category::Background;
+}
+
+void SpriteNode::setSize(int x, int y){
+	sf::IntRect rect = mSprite.getTextureRect();
+	rect.width = x;
+	rect.height = y;
+	mSprite.setTextureRect(rect);
+}
